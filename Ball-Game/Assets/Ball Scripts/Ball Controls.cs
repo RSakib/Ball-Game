@@ -64,7 +64,7 @@ public partial class @BallControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Free_Cursor"",
+                    ""name"": ""PauseGame"",
                     ""type"": ""Button"",
                     ""id"": ""9b4b25ad-c63f-4835-b89c-6982b8cb2eae"",
                     ""expectedControlType"": ""Button"",
@@ -135,7 +135,7 @@ public partial class @BallControls : IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""ps4"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -157,7 +157,7 @@ public partial class @BallControls : IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""ps4"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -179,7 +179,7 @@ public partial class @BallControls : IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""ps4"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Stomp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -201,7 +201,7 @@ public partial class @BallControls : IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""ps4"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Camera_Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -212,8 +212,8 @@ public partial class @BallControls : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""KB+M"",
-                    ""action"": ""Free_Cursor"",
+                    ""groups"": ""KB+M;Gamepad"",
+                    ""action"": ""PauseGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -223,8 +223,8 @@ public partial class @BallControls : IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""ps4"",
-                    ""action"": ""Free_Cursor"",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""PauseGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -249,8 +249,8 @@ public partial class @BallControls : IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""ps4"",
-            ""bindingGroup"": ""ps4"",
+            ""name"": ""Gamepad"",
+            ""bindingGroup"": ""Gamepad"",
             ""devices"": [
                 {
                     ""devicePath"": ""<Gamepad>"",
@@ -267,7 +267,7 @@ public partial class @BallControls : IInputActionCollection2, IDisposable
         m_Ball_Jump = m_Ball.FindAction("Jump", throwIfNotFound: true);
         m_Ball_Stomp = m_Ball.FindAction("Stomp", throwIfNotFound: true);
         m_Ball_Camera_Move = m_Ball.FindAction("Camera_Move", throwIfNotFound: true);
-        m_Ball_Free_Cursor = m_Ball.FindAction("Free_Cursor", throwIfNotFound: true);
+        m_Ball_PauseGame = m_Ball.FindAction("PauseGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -331,7 +331,7 @@ public partial class @BallControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Ball_Jump;
     private readonly InputAction m_Ball_Stomp;
     private readonly InputAction m_Ball_Camera_Move;
-    private readonly InputAction m_Ball_Free_Cursor;
+    private readonly InputAction m_Ball_PauseGame;
     public struct BallActions
     {
         private @BallControls m_Wrapper;
@@ -340,7 +340,7 @@ public partial class @BallControls : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Ball_Jump;
         public InputAction @Stomp => m_Wrapper.m_Ball_Stomp;
         public InputAction @Camera_Move => m_Wrapper.m_Ball_Camera_Move;
-        public InputAction @Free_Cursor => m_Wrapper.m_Ball_Free_Cursor;
+        public InputAction @PauseGame => m_Wrapper.m_Ball_PauseGame;
         public InputActionMap Get() { return m_Wrapper.m_Ball; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -362,9 +362,9 @@ public partial class @BallControls : IInputActionCollection2, IDisposable
                 @Camera_Move.started -= m_Wrapper.m_BallActionsCallbackInterface.OnCamera_Move;
                 @Camera_Move.performed -= m_Wrapper.m_BallActionsCallbackInterface.OnCamera_Move;
                 @Camera_Move.canceled -= m_Wrapper.m_BallActionsCallbackInterface.OnCamera_Move;
-                @Free_Cursor.started -= m_Wrapper.m_BallActionsCallbackInterface.OnFree_Cursor;
-                @Free_Cursor.performed -= m_Wrapper.m_BallActionsCallbackInterface.OnFree_Cursor;
-                @Free_Cursor.canceled -= m_Wrapper.m_BallActionsCallbackInterface.OnFree_Cursor;
+                @PauseGame.started -= m_Wrapper.m_BallActionsCallbackInterface.OnPauseGame;
+                @PauseGame.performed -= m_Wrapper.m_BallActionsCallbackInterface.OnPauseGame;
+                @PauseGame.canceled -= m_Wrapper.m_BallActionsCallbackInterface.OnPauseGame;
             }
             m_Wrapper.m_BallActionsCallbackInterface = instance;
             if (instance != null)
@@ -381,9 +381,9 @@ public partial class @BallControls : IInputActionCollection2, IDisposable
                 @Camera_Move.started += instance.OnCamera_Move;
                 @Camera_Move.performed += instance.OnCamera_Move;
                 @Camera_Move.canceled += instance.OnCamera_Move;
-                @Free_Cursor.started += instance.OnFree_Cursor;
-                @Free_Cursor.performed += instance.OnFree_Cursor;
-                @Free_Cursor.canceled += instance.OnFree_Cursor;
+                @PauseGame.started += instance.OnPauseGame;
+                @PauseGame.performed += instance.OnPauseGame;
+                @PauseGame.canceled += instance.OnPauseGame;
             }
         }
     }
@@ -397,13 +397,13 @@ public partial class @BallControls : IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_KBMSchemeIndex];
         }
     }
-    private int m_ps4SchemeIndex = -1;
-    public InputControlScheme ps4Scheme
+    private int m_GamepadSchemeIndex = -1;
+    public InputControlScheme GamepadScheme
     {
         get
         {
-            if (m_ps4SchemeIndex == -1) m_ps4SchemeIndex = asset.FindControlSchemeIndex("ps4");
-            return asset.controlSchemes[m_ps4SchemeIndex];
+            if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
+            return asset.controlSchemes[m_GamepadSchemeIndex];
         }
     }
     public interface IBallActions
@@ -412,6 +412,6 @@ public partial class @BallControls : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnStomp(InputAction.CallbackContext context);
         void OnCamera_Move(InputAction.CallbackContext context);
-        void OnFree_Cursor(InputAction.CallbackContext context);
+        void OnPauseGame(InputAction.CallbackContext context);
     }
 }

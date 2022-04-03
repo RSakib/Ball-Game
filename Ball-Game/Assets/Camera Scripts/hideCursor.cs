@@ -18,7 +18,7 @@ public class hideCursor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ballControls.Ball.Free_Cursor.performed += free_cursor;
+        ballControls.Ball.PauseGame.performed += free_cursor;
     }
 
     void free_cursor(InputAction.CallbackContext context)

@@ -25,8 +25,6 @@ public class TestBallControl : MonoBehaviour
 
     // Rigidbody component of ball
     private Rigidbody ballRigidBody;
-    // Player Input
-    private PlayerInput playerInput;
     // New User Input System object
     private BallControls ballControls;
     // Raycast hit beneath the ball
@@ -38,7 +36,6 @@ public class TestBallControl : MonoBehaviour
     {
         // Set up all private variables on awake of Ball
         ballRigidBody = GetComponent<Rigidbody>();
-        playerInput = GetComponent<PlayerInput>();
         tRender = GetComponent<TrailRenderer>();
         ballControls = new BallControls();
 
@@ -57,7 +54,7 @@ public class TestBallControl : MonoBehaviour
     {
         // If the Ball is going a above a certain speed, the speed
         //camera will engage and the ball trail will start to draw
-        if(ballRigidBody.velocity.magnitude > 40)
+        if(ballRigidBody.velocity.magnitude > 50)
         {
             tRender.emitting = true;
             Player_Cam.SetActive(false);
@@ -66,7 +63,7 @@ public class TestBallControl : MonoBehaviour
         else
         {
             // Turn off the trail render from before if the ball is not fast enough
-            if (ballRigidBody.velocity.magnitude < 15)
+            if (ballRigidBody.velocity.magnitude < 20)
             {
                 tRender.emitting = false;
             }
