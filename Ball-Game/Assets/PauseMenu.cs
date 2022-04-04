@@ -31,20 +31,20 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         isPaused = true;
         Time.timeScale = 0;
         PauseMenuObj.SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
     }
 
     public void Resume()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         isPaused = false;
         Time.timeScale = 1;
         PauseMenuObj.SetActive(false);
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = false;
     }
 
     public void Quit()
