@@ -1,8 +1,8 @@
-# Ball Game
+# Ball Demo
 
-## Play The Game
+## Play The Demo
 ![image](https://user-images.githubusercontent.com/8354680/164341115-a884b939-f109-4db8-8f56-bbaac2f53252.png)
-You can play the game in your browser at this [link](https://rsakib.itch.io/ball-game)
+You can play the demo in your browser at this [link](https://rsakib.itch.io/ball-game)
 
 ## Table of Contents
 + [About](#about)
@@ -14,16 +14,12 @@ I had a bit of free time in the beginning of my new college quarter and I had ju
 ## Goals
 I had goals going into this project for what I wanted to learn or do with this project.
 These goals were to:
-+ Learn the new Player Input System
-+ Base the Player Ball's entire movement off the physics engine
++ Make Responsive Player Movement and Control
++ Code in Fast Momentum
 + Create a Dynamic Camera system
 + Have a Non-Photo Realistic (NPR) style for the visuals
-+ Allow for fast fluid movement
 
-## Player Movement
-This was the hardest
+## Player Movement and Control
+I based my character movement off the orientation of the Camera. For example, pressing forward will make the ball go up on the screen, regardless of the actual position of the ball. All the controls were done via Unity's newer input system, which allows for easy remapping of all player functions. This new system let me implement a gamepad input map within less than an 5 minutes, which would not be possible by hard coding the inputs. With these two concepts for my player movement, I implemented 4 degrees of movement, a jump, and a stomp within this Demo.
 
-
-## Usage
-
-Add notes about how to use the system.
+## 
