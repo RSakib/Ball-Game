@@ -1,7 +1,8 @@
 # Ball Game
 
 ## Play The Game
-You can play the game in your browser at this [link](https://simmer.io/@RSakib/ballgame)
+![image](https://user-images.githubusercontent.com/8354680/164341115-a884b939-f109-4db8-8f56-bbaac2f53252.png)
+You can play the game in your browser at this [link](https://rsakib.itch.io/ball-game)
 
 ## Table of Contents
 + [About](#about)
